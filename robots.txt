@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lukewang197.github.io/sitemap.xml

@@ -1,0 +1,30 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://lukewang197.github.io/
+          path-to-root: ./
+          drop-html-extension: true
+
+      - name: Commit sitemap
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update sitemap
+          file_pattern: sitemap.xml
