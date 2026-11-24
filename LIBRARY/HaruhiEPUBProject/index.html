@@ -9,6 +9,34 @@
             max-width: 760px;
             line-height: 1.7;
         }
+
+        .revision-date,
+        .revision-version {
+            display: inline-block;
+        }
+
+        .revision-date {
+            min-width: 7.5em;
+        }
+
+        .revision-version {
+            min-width: 5.5em;
+        }
+
+        .latest-revision {
+            display: inline-block;
+            margin: 0 0 16px;
+            padding: 6px 12px;
+            border-left: 3px solid #666;
+            background: #f5f5f5;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .latest-revision strong {
+            color: #222;
+            font-weight: normal;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="description" content="凉宫春日系列小说 EPUB 项目，提供全系列及特典资源，包含直排、横排版本、制作说明与阅读器字体建议。另附日文EPUB与扫图。">
@@ -21,6 +49,12 @@
     <script data-goatcounter="https://lukewang.goatcounter.com/count" async="async" src="//gc.zgo.at/count.js"></script>
     <h1>《凉宫春日系列》小说EPUB项目</h1>
     <hr />
+
+    <p class="latest-revision">
+        <strong>最新修订日期：</strong>
+        <time id="latest-revision-date"></time>
+        　<strong>版本：</strong><span id="latest-revision-version"></span>
+    </p>
 
     <h2>制作说明</h2>
     <p class="meta">
@@ -76,12 +110,18 @@
 
     <details>
         <summary>修订记录</summary>
-        <ul>
-            <li><time datetime="YYYY-MM-DD">20261113</time>　添加日文版资源。《秘话》全本重译。</li>
-            <li><time
-                    datetime="YYYY-MM-DD">20261021</time>　将正篇所有文件全本采取字体嵌入，好处是当读者选择按照原始样式显示时可以完全显示出我期望的样子，坏处是当读者/阅读器使用自定义字体规则时大概率会失去我所有的字体设定，同时若读者自行将EPUB转为简体的话也会无法展示预设字体。另外，修复了《直覺》的图片、目录不兼容问题。
+        <ul id="revision-records">
+            <li><time class="revision-date" datetime="2026-11-24">20261124</time><span
+                    class="revision-version">v3.1.1</span>修订《動搖》。</li>
+            <li><time class="revision-date" datetime="2026-11-15">20261115</time><span
+                    class="revision-version">v3.1.0</span>《Rainy Day》翻译修订。</li>
+            <li><time class="revision-date" datetime="2026-11-13">20261113</time><span
+                    class="revision-version">v3.0.0</span>添加日文版资源。《秘话》全本重译。</li>
+            <li><time class="revision-date" datetime="2026-10-21">20261021</time><span
+                    class="revision-version">v2.2.0</span>将正篇所有文件全本采取字体嵌入，好处是当读者选择按照原始样式显示时可以完全显示出我期望的样子，坏处是当读者/阅读器使用自定义字体规则时大概率会失去我所有的字体设定，同时若读者自行将EPUB转为简体的话也会无法展示预设字体。另外，修复了《直覺》的图片、目录不兼容问题。
             </li>
-            <li><time datetime="YYYY-MM-DD">20261002</time>　修复了《观测》《秘话》的EPUB不规范问题。</li>
+            <li><time class="revision-date" datetime="2026-10-02">20261002</time><span
+                    class="revision-version">v2.1.0</span>修复了《观测》《秘话》的EPUB不规范问题。</li>
         </ul>
     </details>
     <hr />
@@ -92,7 +132,24 @@
     <hr />
     <p class="footnote">仅供学习交流，禁作商业用途。下载后请于24小时内删除，本站不承担任何责任。</p>
     <p class="footnote">Contact: lukewang197@gmail.com</p>
-    <p class="footnote">Last Updated: 2026.11.13</p>
+    <p class="footnote">Last Updated: 2026.11.24</p>
+
+    <script>
+        const latestRevision = document.querySelector("#revision-records li");
+        if (latestRevision) {
+            const date = latestRevision.querySelector("time");
+            const version = latestRevision.querySelector(".revision-version");
+
+            if (date) {
+                document.querySelector("#latest-revision-date").textContent = date.textContent;
+                document.querySelector("#latest-revision-date").dateTime = date.dateTime;
+            }
+
+            if (version) {
+                document.querySelector("#latest-revision-version").textContent = version.textContent;
+            }
+        }
+    </script>
 </body>
 
 </html>
